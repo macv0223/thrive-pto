@@ -61,3 +61,4 @@ dist/                    Prebuilt public website
 
 See `docs/ASSET-AND-CONTENT-SOURCES.md` for source credits and placeholder replacement guidance. Decap CMS 3.16.3 is bundled locally so editor loading does not depend on a third-party script CDN. Its license and third-party notices are included.
 
+
