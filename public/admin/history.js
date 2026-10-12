@@ -7,7 +7,7 @@ try{
   const state=await fetch('setup-status.json',{cache:'no-store'}).then(r=>r.json());
   config=await fetch('config.json',{cache:'no-store'}).then(r=>r.json());
   if(!state.configured)message('Content history will be available after your administrator connects editing access.');
-  else{message('Sign in with an approved repository administrator account to see content history.');login.hidden=false;}
+  else{message('Sign in with an approved PTO administrator account to see content history.');login.hidden=false;}
 }catch{message('The editor connection is unavailable. Please reload the page.');}
 login.addEventListener('click',()=>{
   const origin=new URL(config.backend.base_url).origin;
@@ -20,7 +20,7 @@ login.addEventListener('click',()=>{
     if(event.data==='authorizing:github'){popup.postMessage(event.data,origin);return;}
     const prefix='authorization:github:success:';if(!event.data.startsWith(prefix))return;
     finish();
-    try{token=JSON.parse(event.data.slice(prefix.length)).token;if(!token)throw new Error('Sign-in did not return an editor token.');api=githubClient(config.backend.repo,token);const repo=await api('');if(!repo.permissions?.admin)throw new Error('Content restoration requires a repository administrator account.');await loadHistory();login.hidden=true;document.querySelector('#history-logout').hidden=false;}
+    try{const authorization=JSON.parse(event.data.slice(prefix.length));token=authorization.token;if(!token)throw new Error('Sign-in did not return an editor token.');api=githubClient(config.backend.repo,token);const repo=await api('');if(!repo.permissions?.push||(authorization.role!=='admin'&&!repo.permissions?.admin))throw new Error('Content restoration requires an approved PTO administrator account with repository editing access.');await loadHistory();login.hidden=true;document.querySelector('#history-logout').hidden=false;}
     catch(error){token=undefined;api=undefined;message(error.message);}
   }
   window.addEventListener('message',receive);
@@ -68,3 +68,4 @@ document.querySelector('#restore-draft').addEventListener('click',async()=>{
   try{const draft=await createRestorationDraft(api,plan);const link=document.createElement('a');link.href=draft.html_url;link.target='_blank';link.rel='noopener noreferrer';link.textContent='Review and publish the restoration draft in GitHub →';document.querySelector('#restore-result').replaceChildren(link);message('Restoration draft created. Review it, mark it ready, and merge it in GitHub to publish. The live website has not changed.');}
   catch(error){message(error.message);button.disabled=false;}
 });
+

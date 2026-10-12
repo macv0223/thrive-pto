@@ -25,12 +25,15 @@ function config(env){
   if(!/^[a-zA-Z0-9_.-]+\/[a-zA-Z0-9_.-]+$/.test(env.REPOSITORY||''))throw new Error('Repository required');
   if(!env.GITHUB_CLIENT_ID||!env.GITHUB_CLIENT_SECRET||String(env.SESSION_SECRET||'').length<32)throw new Error('Secrets required');
   const users=String(env.ALLOWED_USERS||'').split(',').map(x=>x.trim().toLowerCase()).filter(Boolean);
-  if(!users.length)throw new Error('Editor allowlist required');
-  return{cms:cms.origin,auth:auth.origin,users,scope:env.PRIVATE_REPOSITORY==='true'?'repo':'public_repo'};
+  const adminEmails=String(env.ALLOWED_ADMIN_EMAILS||'').split(',').map(x=>x.trim().toLowerCase()).filter(Boolean);
+  if(adminEmails.some(email=>! /^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(email)))throw new Error('Administrator emails must be valid');
+  if(!users.length&&!adminEmails.length)throw new Error('Editor allowlist required');
+  const repoScope=env.PRIVATE_REPOSITORY==='true'?'repo':'public_repo';
+  return{cms:cms.origin,auth:auth.origin,users,adminEmails,scope:repoScope+(adminEmails.length?' user:email':'')};
 }
-function authorizedPopup(token,origin){
+function authorizedPopup(token,origin,role){
   const nonce=random();
-  const payload='authorization:github:success:'+JSON.stringify({token,provider:'github'});
+  const payload='authorization:github:success:'+JSON.stringify({token,provider:'github',role});
   const source=`const origin=${json(origin)},payload=${json(payload)};if(window.opener){const timer=setTimeout(()=>{document.getElementById('message').textContent='Return to the editor and try signing in again.'},30000);function receive(event){if(event.origin!==origin||event.source!==window.opener||event.data!=='authorizing:github')return;clearTimeout(timer);window.removeEventListener('message',receive);window.opener.postMessage(payload,origin);setTimeout(()=>window.close(),250)}window.addEventListener('message',receive);window.opener.postMessage('authorizing:github',origin)}else{document.getElementById('message').textContent='Return to the PTO editor and sign in there.'}`;
   return new Response(`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Thrive PTO editor sign-in</title><style nonce="${nonce}">body{font:18px/1.7 system-ui;color:#123d57;background:#faf9f4;padding:40px;max-width:650px;margin:auto}</style></head><body><h1>You're connected.</h1><p id="message">Returning to the PTO editor…</p><script nonce="${nonce}">${source}</script></body></html>`,{headers:{...baseHeaders,'Content-Type':'text/html;charset=utf-8','Set-Cookie':cookie('',0),'Content-Security-Policy':`default-src 'none'; script-src 'nonce-${nonce}'; style-src 'nonce-${nonce}'; base-uri 'none'; frame-ancestors 'none'; form-action 'none'`}});
 }
@@ -64,14 +67,25 @@ export default {
         const userResponse=await fetch('https://api.github.com/user',{headers});
         if(!userResponse.ok)return error('Your GitHub account could not be checked.',403);
         const user=await userResponse.json();
-        if(!settings.users.includes(String(user.login||'').toLowerCase()))return error('This account has not been approved as a PTO editor.',403);
+        const approvedUsername=settings.users.includes(String(user.login||'').toLowerCase());
+        let approvedAdminEmail=false;
+        if(settings.adminEmails.length){
+          const emailResponse=await fetch('https://api.github.com/user/emails?per_page=100',{headers});
+          if(!emailResponse.ok)return error('Your verified GitHub email addresses could not be checked. Return to the editor and authorize email access.',403);
+          const addresses=await emailResponse.json();
+          if(!Array.isArray(addresses))return error('Your verified GitHub email addresses could not be checked.',403);
+          approvedAdminEmail=addresses.some(address=>address.verified===true&&settings.adminEmails.includes(String(address.email||'').trim().toLowerCase()));
+        }
+        if(!approvedUsername&&!approvedAdminEmail)return error('This account has not been approved as a PTO editor. Check that your approved email is verified in GitHub.',403);
         const repositoryResponse=await fetch('https://api.github.com/repos/'+env.REPOSITORY,{headers});
         if(!repositoryResponse.ok)return error('Your account does not have access to the PTO repository.',403);
         const repository=await repositoryResponse.json();
         if(!repository.permissions?.push)return error('Your account does not have PTO editing permission.',403);
-        return authorizedPopup(credentials.access_token,settings.cms);
+        const role=approvedAdminEmail||repository.permissions.admin?'admin':'editor';
+        return authorizedPopup(credentials.access_token,settings.cms,role);
       }catch{return error('Sign-in could not be completed. Please try again.',502);}
     }
     return error('Not found.',404,false);
   }
 };
+

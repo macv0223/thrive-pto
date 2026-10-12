@@ -4,12 +4,12 @@ compatibility_date = "2026-10-12"
 workers_dev = true
 
 [vars]
-# Replace with the exact origins, without trailing slashes or repository paths.
-CMS_ORIGIN = "https://YOUR-ACCOUNT.github.io"
-AUTH_ORIGIN = "https://thrive-pto-auth.YOUR-SUBDOMAIN.workers.dev"
-REPOSITORY = "YOUR-ACCOUNT/YOUR-REPOSITORY"
-ALLOWED_USERS = "YOUR-GITHUB-USERNAME"
+CMS_ORIGIN = "https://macv0223.github.io"
+AUTH_ORIGIN = "https://REPLACE-WITH-YOUR-WORKER-ORIGIN"
+REPOSITORY = "macv0223/thrive-pto"
 PRIVATE_REPOSITORY = "false"
 
+# Add ALLOWED_ADMIN_EMAILS as a secret, with the two approved administrator emails.
 # Add GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET and SESSION_SECRET as Worker secrets.
-# Never paste secrets into this file or into the public website.
+# Empty ALLOWED_USERS leaves access restricted to verified administrator emails.
+# Never paste secret values into this file or the public repository.
