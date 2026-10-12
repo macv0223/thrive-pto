@@ -1,0 +1,694 @@
+{
+  "backend": {
+    "name": "github",
+    "repo": "SETUP_REQUIRED/SETUP_REQUIRED",
+    "branch": "main",
+    "base_url": "https://setup-required.invalid",
+    "auth_endpoint": "auth",
+    "squash_merges": true
+  },
+  "publish_mode": "editorial_workflow",
+  "media_folder": "public/assets/uploads",
+  "public_folder": "assets/uploads",
+  "slug": {
+    "encoding": "ascii",
+    "clean_accents": true,
+    "sanitize_replacement": "-"
+  },
+  "logo_url": "../assets/pto-logo.webp",
+  "show_preview_links": false,
+  "collections": [
+    {
+      "name": "pages",
+      "label": "Website pages",
+      "files": [
+        {
+          "name": "home",
+          "label": "Home",
+          "file": "content/home.json",
+          "fields": [
+            {
+              "name": "eyebrow",
+              "label": "Eyebrow",
+              "widget": "string"
+            },
+            {
+              "name": "title",
+              "label": "Title",
+              "widget": "string"
+            },
+            {
+              "name": "intro",
+              "label": "Intro",
+              "widget": "text"
+            },
+            {
+              "name": "primaryLabel",
+              "label": "Primary Label",
+              "widget": "string"
+            },
+            {
+              "name": "secondaryLabel",
+              "label": "Secondary Label",
+              "widget": "string"
+            },
+            {
+              "name": "image",
+              "label": "Image",
+              "widget": "image",
+              "hint": "Upload an approved image. Use the image description field to describe meaningful content."
+            },
+            {
+              "name": "imageAlt",
+              "label": "Image description (accessibility)",
+              "widget": "text"
+            },
+            {
+              "name": "imageCaption",
+              "label": "Image Caption",
+              "widget": "string",
+              "hint": "Keep the illustration/placeholder description until you replace the image with an approved photograph."
+            },
+            {
+              "name": "pathsTitle",
+              "label": "Paths Title",
+              "widget": "string"
+            },
+            {
+              "name": "pathsIntro",
+              "label": "Paths Intro",
+              "widget": "text"
+            },
+            {
+              "name": "eventsTitle",
+              "label": "Events Title",
+              "widget": "string"
+            },
+            {
+              "name": "eventsIntro",
+              "label": "Events Intro",
+              "widget": "text"
+            },
+            {
+              "name": "volunteerTitle",
+              "label": "Volunteer Title",
+              "widget": "string"
+            },
+            {
+              "name": "volunteerIntro",
+              "label": "Volunteer Intro",
+              "widget": "text"
+            },
+            {
+              "name": "membershipTitle",
+              "label": "Membership Title",
+              "widget": "string"
+            },
+            {
+              "name": "membershipIntro",
+              "label": "Membership Intro",
+              "widget": "text"
+            },
+            {
+              "name": "contactTitle",
+              "label": "Contact Title",
+              "widget": "string"
+            },
+            {
+              "name": "contactIntro",
+              "label": "Contact Intro",
+              "widget": "text"
+            }
+          ]
+        },
+        {
+          "name": "about",
+          "label": "About the PTO",
+          "file": "content/about.json",
+          "fields": [
+            {
+              "name": "eyebrow",
+              "label": "Eyebrow",
+              "widget": "string"
+            },
+            {
+              "name": "title",
+              "label": "Title",
+              "widget": "string"
+            },
+            {
+              "name": "intro",
+              "label": "Intro",
+              "widget": "text"
+            },
+            {
+              "name": "boardTitle",
+              "label": "Board Title",
+              "widget": "string"
+            },
+            {
+              "name": "boardBody",
+              "label": "Board Body",
+              "widget": "text"
+            },
+            {
+              "name": "volunteerTitle",
+              "label": "Volunteer Title",
+              "widget": "string"
+            },
+            {
+              "name": "volunteerBody",
+              "label": "Volunteer Body",
+              "widget": "text"
+            },
+            {
+              "name": "contactTitle",
+              "label": "Contact Title",
+              "widget": "string"
+            },
+            {
+              "name": "contactBody",
+              "label": "Contact Body",
+              "widget": "text"
+            }
+          ]
+        },
+        {
+          "name": "membership",
+          "label": "Membership",
+          "file": "content/membership.json",
+          "fields": [
+            {
+              "name": "eyebrow",
+              "label": "Eyebrow",
+              "widget": "string"
+            },
+            {
+              "name": "title",
+              "label": "Title",
+              "widget": "string"
+            },
+            {
+              "name": "intro",
+              "label": "Intro",
+              "widget": "text"
+            },
+            {
+              "name": "voiceTitle",
+              "label": "Voice Title",
+              "widget": "string"
+            },
+            {
+              "name": "voiceBody",
+              "label": "Voice Body",
+              "widget": "text"
+            },
+            {
+              "name": "familyTitle",
+              "label": "Family Title",
+              "widget": "string"
+            },
+            {
+              "name": "familyBody",
+              "label": "Family Body",
+              "widget": "text"
+            },
+            {
+              "name": "individualTitle",
+              "label": "Individual Title",
+              "widget": "string"
+            },
+            {
+              "name": "individualBody",
+              "label": "Individual Body",
+              "widget": "text"
+            },
+            {
+              "name": "joinLabel",
+              "label": "Join Label",
+              "widget": "string"
+            },
+            {
+              "name": "paymentNote",
+              "label": "Payment Note",
+              "widget": "text"
+            },
+            {
+              "name": "contactTitle",
+              "label": "Contact Title",
+              "widget": "string"
+            },
+            {
+              "name": "contactBody",
+              "label": "Contact Body",
+              "widget": "text"
+            }
+          ]
+        },
+        {
+          "name": "volunteer",
+          "label": "Volunteering",
+          "file": "content/volunteer.json",
+          "fields": [
+            {
+              "name": "eyebrow",
+              "label": "Eyebrow",
+              "widget": "string"
+            },
+            {
+              "name": "title",
+              "label": "Title",
+              "widget": "string"
+            },
+            {
+              "name": "intro",
+              "label": "Intro",
+              "widget": "text"
+            },
+            {
+              "name": "areasTitle",
+              "label": "Areas Title",
+              "widget": "string"
+            },
+            {
+              "name": "areas",
+              "label": "Areas",
+              "widget": "list",
+              "min": 1,
+              "field": {
+                "name": "area",
+                "label": "Volunteer area",
+                "widget": "string"
+              }
+            },
+            {
+              "name": "formTitle",
+              "label": "Form Title",
+              "widget": "string"
+            },
+            {
+              "name": "formIntro",
+              "label": "Form Intro",
+              "widget": "text"
+            },
+            {
+              "name": "formButton",
+              "label": "Form Button",
+              "widget": "string"
+            },
+            {
+              "name": "formNote",
+              "label": "Form Note",
+              "widget": "text"
+            }
+          ]
+        },
+        {
+          "name": "events-page",
+          "label": "Events page",
+          "file": "content/events-page.json",
+          "fields": [
+            {
+              "name": "eyebrow",
+              "label": "Eyebrow",
+              "widget": "string"
+            },
+            {
+              "name": "title",
+              "label": "Title",
+              "widget": "string"
+            },
+            {
+              "name": "intro",
+              "label": "Intro",
+              "widget": "text"
+            },
+            {
+              "name": "emptyTitle",
+              "label": "Empty Title",
+              "widget": "string"
+            },
+            {
+              "name": "emptyBody",
+              "label": "Empty Body",
+              "widget": "text"
+            },
+            {
+              "name": "contactLabel",
+              "label": "Contact Label",
+              "widget": "string"
+            }
+          ]
+        },
+        {
+          "name": "news-page",
+          "label": "Updates page",
+          "file": "content/news-page.json",
+          "fields": [
+            {
+              "name": "eyebrow",
+              "label": "Eyebrow",
+              "widget": "string"
+            },
+            {
+              "name": "title",
+              "label": "Title",
+              "widget": "string"
+            },
+            {
+              "name": "intro",
+              "label": "Intro",
+              "widget": "text"
+            },
+            {
+              "name": "emptyTitle",
+              "label": "Empty Title",
+              "widget": "string"
+            },
+            {
+              "name": "emptyBody",
+              "label": "Empty Body",
+              "widget": "text"
+            }
+          ]
+        },
+        {
+          "name": "support",
+          "label": "Store & support",
+          "file": "content/support.json",
+          "fields": [
+            {
+              "name": "eyebrow",
+              "label": "Eyebrow",
+              "widget": "string"
+            },
+            {
+              "name": "title",
+              "label": "Title",
+              "widget": "string"
+            },
+            {
+              "name": "intro",
+              "label": "Intro",
+              "widget": "text"
+            },
+            {
+              "name": "storeTitle",
+              "label": "Store Title",
+              "widget": "string"
+            },
+            {
+              "name": "storeBody",
+              "label": "Store Body",
+              "widget": "text"
+            },
+            {
+              "name": "storeLabel",
+              "label": "Store Label",
+              "widget": "string"
+            },
+            {
+              "name": "membershipTitle",
+              "label": "Membership Title",
+              "widget": "string"
+            },
+            {
+              "name": "membershipBody",
+              "label": "Membership Body",
+              "widget": "text"
+            },
+            {
+              "name": "membershipLabel",
+              "label": "Membership Label",
+              "widget": "string"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "settings",
+      "label": "Site settings & links",
+      "files": [
+        {
+          "name": "settings",
+          "label": "Branding, contact & links",
+          "file": "content/settings.json",
+          "fields": [
+            {
+              "name": "name",
+              "label": "Name",
+              "widget": "string"
+            },
+            {
+              "name": "shortName",
+              "label": "Short Name",
+              "widget": "string"
+            },
+            {
+              "name": "schoolYear",
+              "label": "School Year",
+              "widget": "string"
+            },
+            {
+              "name": "email",
+              "label": "Email",
+              "widget": "string",
+              "pattern": [
+                "^[^\\s@<>]+@[^\\s@<>]+\\.[^\\s@<>]+$",
+                "Enter a valid email address."
+              ]
+            },
+            {
+              "name": "logo",
+              "label": "Logo",
+              "widget": "image",
+              "hint": "Upload an approved image. Use the image description field to describe meaningful content."
+            },
+            {
+              "name": "schoolUrl",
+              "label": "School Url",
+              "widget": "string",
+              "pattern": [
+                "^https://[^\\s]+$",
+                "Use a complete https:// link."
+              ]
+            },
+            {
+              "name": "membershipUrl",
+              "label": "Membership Url",
+              "widget": "string",
+              "pattern": [
+                "^https://[^\\s]+$",
+                "Use a complete https:// link."
+              ]
+            },
+            {
+              "name": "storeUrl",
+              "label": "Store Url",
+              "widget": "string",
+              "pattern": [
+                "^https://[^\\s]+$",
+                "Use a complete https:// link."
+              ]
+            },
+            {
+              "name": "description",
+              "label": "Description",
+              "widget": "text"
+            },
+            {
+              "name": "footerText",
+              "label": "Footer Text",
+              "widget": "text"
+            },
+            {
+              "name": "navAbout",
+              "label": "Nav About",
+              "widget": "string"
+            },
+            {
+              "name": "navEvents",
+              "label": "Nav Events",
+              "widget": "string"
+            },
+            {
+              "name": "navVolunteer",
+              "label": "Nav Volunteer",
+              "widget": "string"
+            },
+            {
+              "name": "navMembership",
+              "label": "Nav Membership",
+              "widget": "string"
+            },
+            {
+              "name": "navSupport",
+              "label": "Nav Support",
+              "widget": "string"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "events",
+      "label": "PTO events",
+      "label_singular": "PTO event",
+      "folder": "content/events",
+      "create": true,
+      "extension": "json",
+      "format": "json",
+      "slug": "{{year}}-{{month}}-{{day}}-{{slug}}",
+      "summary": "{{title}} · {{start}}",
+      "identifier_field": "title",
+      "sortable_fields": [
+        "start",
+        "title"
+      ],
+      "fields": [
+        {
+          "name": "title",
+          "label": "Event title",
+          "widget": "string"
+        },
+        {
+          "name": "start",
+          "label": "Start date & time",
+          "widget": "datetime",
+          "date_format": "MM/DD/YYYY",
+          "time_format": "h:mm A",
+          "format": "YYYY-MM-DDTHH:mm:ssZ",
+          "picker_utc": false,
+          "hint": "Enter Magnolia, Texas time. For an all-day event, the calendar date you enter is used."
+        },
+        {
+          "name": "end",
+          "label": "End date & time (optional)",
+          "widget": "datetime",
+          "required": false,
+          "format": "YYYY-MM-DDTHH:mm:ssZ",
+          "picker_utc": false,
+          "hint": "For an all-day event, the end date is the last included day."
+        },
+        {
+          "name": "allDay",
+          "label": "All-day event",
+          "widget": "boolean",
+          "default": false
+        },
+        {
+          "name": "category",
+          "label": "Event type",
+          "widget": "select",
+          "options": [
+            "PTO event",
+            "Fundraising",
+            "Spirit Night",
+            "Staff Appreciation",
+            "Meeting"
+          ],
+          "default": "PTO event"
+        },
+        {
+          "name": "location",
+          "label": "Location (optional)",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "description",
+          "label": "Event details",
+          "widget": "text"
+        },
+        {
+          "name": "link",
+          "label": "Optional link",
+          "widget": "string",
+          "required": false,
+          "pattern": [
+            "^https://[^\\s]+$",
+            "Use a complete https:// link."
+          ]
+        },
+        {
+          "name": "linkLabel",
+          "label": "Link button text",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "published",
+          "label": "Show on the website after publishing",
+          "widget": "boolean",
+          "default": true
+        }
+      ]
+    },
+    {
+      "name": "news",
+      "label": "News & announcements",
+      "label_singular": "Announcement",
+      "folder": "content/news",
+      "create": true,
+      "extension": "json",
+      "format": "json",
+      "slug": "{{year}}-{{month}}-{{day}}-{{slug}}",
+      "summary": "{{title}}",
+      "fields": [
+        {
+          "name": "title",
+          "label": "Announcement title",
+          "widget": "string"
+        },
+        {
+          "name": "date",
+          "label": "Announcement date",
+          "widget": "datetime",
+          "date_format": "MM/DD/YYYY",
+          "time_format": false,
+          "format": "YYYY-MM-DD"
+        },
+        {
+          "name": "body",
+          "label": "Announcement text",
+          "widget": "text"
+        },
+        {
+          "name": "image",
+          "label": "Approved image (optional)",
+          "widget": "image",
+          "required": false
+        },
+        {
+          "name": "imageAlt",
+          "label": "Image description (accessibility)",
+          "widget": "text",
+          "required": false
+        },
+        {
+          "name": "link",
+          "label": "Optional link",
+          "widget": "string",
+          "required": false,
+          "pattern": [
+            "^https://[^\\s]+$",
+            "Use a complete https:// link."
+          ]
+        },
+        {
+          "name": "linkLabel",
+          "label": "Link button text",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "name": "published",
+          "label": "Show on the website after publishing",
+          "widget": "boolean",
+          "default": true
+        }
+      ]
+    }
+  ]
+}

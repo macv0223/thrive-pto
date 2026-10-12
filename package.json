@@ -1,0 +1,13 @@
+{
+  "name": "thrive-center-for-success-pto",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Accessible PTO website with Decap CMS and GitHub Pages deployment",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check": "node scripts/check.mjs"
+  },
+  "engines": { "node": ">=22" }
+}

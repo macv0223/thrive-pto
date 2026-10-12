@@ -1,0 +1,15 @@
+name = "thrive-pto-auth"
+main = "worker.mjs"
+compatibility_date = "2026-10-12"
+workers_dev = true
+
+[vars]
+# Replace with the exact origins, without trailing slashes or repository paths.
+CMS_ORIGIN = "https://YOUR-ACCOUNT.github.io"
+AUTH_ORIGIN = "https://thrive-pto-auth.YOUR-SUBDOMAIN.workers.dev"
+REPOSITORY = "YOUR-ACCOUNT/YOUR-REPOSITORY"
+ALLOWED_USERS = "YOUR-GITHUB-USERNAME"
+PRIVATE_REPOSITORY = "false"
+
+# Add GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET and SESSION_SECRET as Worker secrets.
+# Never paste secrets into this file or into the public website.
