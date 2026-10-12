@@ -5,7 +5,7 @@ workers_dev = true
 
 [vars]
 CMS_ORIGIN = "https://macv0223.github.io"
-AUTH_ORIGIN = "https://REPLACE-WITH-YOUR-WORKER-ORIGIN"
+AUTH_ORIGIN = "https://thrive-pto.pages.dev"
 REPOSITORY = "macv0223/thrive-pto"
 PRIVATE_REPOSITORY = "false"
 
